@@ -1,6 +1,11 @@
 default_platform(:android)
 
 platform :android do
+  lane :build_flutter_app do
+    sh "flutter clean"
+    sh "flutter pub get"
+  end
+
   lane :deploy_to_firebase do
     sh "flutter build apk --release"
     # Étape de déploiement sur Firebase App Distribution
