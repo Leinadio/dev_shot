@@ -1,5 +1,5 @@
-import 'package:dev_shot/styles/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:dev_shot/styles/styles.dart';
 import 'package:dev_shot/components/shot/shot.dart';
 import 'package:dev_shot/screens/article.dart';
 
@@ -15,9 +15,6 @@ class Home extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: spaceL),
             child: Column(
               children: <Widget>[
-                const SizedBox(
-                  height: spaceXL,
-                ),
                 Text(
                   "Des articles concentrés qui font gagner du temps",
                   style: TextStyle(
@@ -30,7 +27,7 @@ class Home extends StatelessWidget {
                   height: spaceXL,
                 ),
                 Text(
-                  "Une veille et des articles de développement qui vont droit au but. \n Prenez rapidement vos shots",
+                  "Une veille et des articles de développement qui vont droit au but. \nPrenez rapidement vos shots",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
                     fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
@@ -63,7 +60,7 @@ class Home extends StatelessWidget {
                     ),
                   ),
                   ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: 5,
                     itemBuilder: (BuildContext context, index) {

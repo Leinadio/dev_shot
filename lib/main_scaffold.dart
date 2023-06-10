@@ -1,7 +1,10 @@
+import 'package:dev_shot/screens/favorites.dart';
+import 'package:dev_shot/screens/profil.dart';
 import 'package:flutter/material.dart';
 import 'package:dev_shot/services/logo.dart';
 import 'package:dev_shot/screens/home.dart';
 import 'package:dev_shot/screens/articles.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class MainScaffold extends StatefulWidget {
   const MainScaffold({super.key});
@@ -11,6 +14,8 @@ class MainScaffold extends StatefulWidget {
 }
 
 class MainScaffoldState extends State<MainScaffold> {
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  final PageController _pageController = PageController(initialPage: 0);
   int _selectedIndex = 0;
 
   List<Widget> listWidget = const [
@@ -22,37 +27,113 @@ class MainScaffoldState extends State<MainScaffold> {
     setState(() {
       _selectedIndex = index;
     });
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.ease,
+    );
+  }
+
+  Color updatePageIndex(index) {
+    if (_selectedIndex == index) {
+      return Theme.of(context).colorScheme.onPrimaryContainer;
+    }
+    return Theme.of(context).colorScheme.outline;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: Theme.of(context).colorScheme.background,
         title: logo,
       ),
-      body: listWidget.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
-        selectedItemColor: Theme.of(context).colorScheme.onPrimaryContainer,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: Theme.of(context).colorScheme.onPrimaryContainer,
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.list,
-              color: Theme.of(context).colorScheme.outline,
-            ),
-            label: 'List',
-          ),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (newIndex) {
+          setState(() {
+            _selectedIndex = newIndex;
+          });
+        },
+        children: const [
+          Home(),
+          ArticlesScreen(),
+          Favorites(),
+          Profil(),
+          // listWidget.elementAt(_selectedIndex),
         ],
+      ),
+      bottomNavigationBar: Container(
+        width: double.infinity,
+        height: 100,
+        color: Theme.of(context).colorScheme.primary,
+        child: CurvedNavigationBar(
+          index: _selectedIndex,
+          key: _bottomNavigationKey,
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          animationDuration: const Duration(milliseconds: 300),
+          buttonBackgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          items: <Widget>[
+            Icon(
+              Icons.home,
+              color: updatePageIndex(0),
+            ),
+            Icon(
+              Icons.search,
+              color: updatePageIndex(1),
+            ),
+            Icon(
+              Icons.bookmark_add,
+              color: updatePageIndex(2),
+            ),
+            Icon(
+              Icons.person,
+              color: updatePageIndex(3),
+            ),
+          ],
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }
 }
+
+
+// BottomNavigationBar(
+//         onTap: _onItemTapped,
+//         currentIndex: _selectedIndex,
+//         selectedItemColor: Theme.of(context).colorScheme.onPrimaryContainer,
+//         showSelectedLabels: true,
+//         showUnselectedLabels: true,
+//         unselectedItemColor: Theme.of(context).colorScheme.onPrimaryContainer,
+//         items: [
+//           BottomNavigationBarItem(
+//             icon: Icon(
+//               Icons.home,
+//               color: updateColor(0),
+//             ),
+//             label: 'Home',
+//           ),
+//           BottomNavigationBarItem(
+//             icon: Icon(
+//               Icons.search,
+//               color: updateColor(1),
+//             ),
+//             label: 'List',
+//           ),
+//           BottomNavigationBarItem(
+//             icon: Icon(
+//               Icons.bookmark_add,
+//               color: updateColor(1),
+//             ),
+//             label: 'Favoris',
+//           ),
+//           BottomNavigationBarItem(
+//             icon: Icon(
+//               Icons.person,
+//               color: updateColor(1),
+//             ),
+//             label: 'Profil',
+//           ),
+//         ],
+//       ),
