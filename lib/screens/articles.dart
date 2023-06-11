@@ -10,145 +10,171 @@ class ArticlesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: spaceL),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            // const SizedBox(
-            //   height: spaceXL,
-            // ),
-            // Text(
-            //   "Tous les articles",
-            //   style: TextStyle(
-            //     color: Theme.of(context).colorScheme.primary,
-            //     fontSize: Theme.of(context).textTheme.titleLarge!.fontSize,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-            // const SizedBox(
-            //   height: spaceXL,
-            // ),
-            // Text(
-            //   "Cherchez des shots de développement selon les thèmes qui vous intéressent",
-            //   style: TextStyle(
-            //     color: Theme.of(context).colorScheme.onPrimaryContainer,
-            //     fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
-            //   ),
-            // ),
-            // const SizedBox(
-            //   height: spaceM,
-            // ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: spaceL),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          // const SizedBox(
+          //   height: spaceXL,
+          // ),
+          // Text(
+          //   "Tous les articles",
+          //   style: TextStyle(
+          //     color: Theme.of(context).colorScheme.primary,
+          //     fontSize: Theme.of(context).textTheme.titleLarge!.fontSize,
+          //     fontWeight: FontWeight.bold,
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: spaceXL,
+          // ),
+          // Text(
+          //   "Cherchez des shots de développement selon les thèmes qui vous intéressent",
+          //   style: TextStyle(
+          //     color: Theme.of(context).colorScheme.onPrimaryContainer,
+          //     fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: spaceM,
+          // ),
 
-            TextField(
-              controller: TextEditingController(text: 'Rechercher...'),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return const Search();
-                    },
-                  ),
-                );
-              },
-              canRequestFocus: false,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.black,
-                    style: BorderStyle.solid,
-                    width: 1,
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(15),
-                  ),
+          TextFormField(
+            // onTap: () {
+            //   Navigator.of(context).push(
+            //     MaterialPageRoute(
+            //       builder: (BuildContext context) {
+            //         return const Search();
+            //       },
+            //     ),
+            //   );
+            // },
+            // canRequestFocus: false,
+
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.onPrimaryContainer),
+            decoration: InputDecoration(
+              hintText: 'Rechercher...',
+              prefixIcon: Icon(
+                Icons.search,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
+              ),
+              fillColor: Colors.white,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              filled: true,
+              border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15),
                 ),
               ),
             ),
-            const SizedBox(
-              height: spaceM,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: Wrap(
-                alignment: WrapAlignment.end,
-                spacing: 10,
-                runSpacing: 10,
-                children: [
-                  Container(
-                    width: 100,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        style: BorderStyle.solid,
-                        width: 1,
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      ),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(5),
-                      ),
+          ),
+          const SizedBox(
+            height: spaceM,
+          ),
+          SizedBox(
+            width: double.infinity,
+            child: Wrap(
+              alignment: WrapAlignment.start,
+              spacing: 10,
+              runSpacing: 10,
+              children: [
+                Container(
+                  width: 100,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      style: BorderStyle.solid,
+                      width: 1,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
-                    child: const Center(
-                      child: Text('#firebase'),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(5),
                     ),
                   ),
-                  Container(
-                    width: 100,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        style: BorderStyle.solid,
-                        width: 1,
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  child: Center(
+                    child: Text(
+                      '#firebase',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
                       ),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(5),
-                      ),
-                    ),
-                    child: const Center(
-                      child: Text('#firebase'),
                     ),
                   ),
-                  Container(
-                    width: 100,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        style: BorderStyle.solid,
-                        width: 1,
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      ),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(5),
-                      ),
+                ),
+                Container(
+                  width: 100,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      style: BorderStyle.solid,
+                      width: 1,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
-                    child: const Center(
-                      child: Text('#firebase'),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(5),
                     ),
                   ),
-                  Container(
-                    width: 100,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        style: BorderStyle.solid,
-                        width: 1,
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      ),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(5),
+                  child: Center(
+                    child: Text(
+                      '#firebase',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
                       ),
                     ),
-                    child: const Center(
-                      child: Text('#firebase'),
+                  ),
+                ),
+                Container(
+                  width: 100,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      style: BorderStyle.solid,
+                      width: 1,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
-                  )
-                ],
-              ),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(5),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '#firebase',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 100,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      style: BorderStyle.solid,
+                      width: 1,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(5),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '#firebase',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
-            const SizedBox(
-              height: spaceM,
-            ),
-            ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
+          ),
+          const SizedBox(
+            height: spaceM,
+          ),
+          Expanded(
+            child: ListView.builder(
+              // physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: 5,
               itemBuilder: (BuildContext context, index) {
@@ -170,8 +196,8 @@ class ArticlesScreen extends StatelessWidget {
                 );
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

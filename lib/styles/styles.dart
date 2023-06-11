@@ -1,4 +1,4 @@
-const double spaceXXS = 4;
+const double spaceXXS = 2;
 const double spaceXS = 6;
 const double spaceS = 8;
 const double spaceM = 16;

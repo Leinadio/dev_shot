@@ -1,3 +1,5 @@
+import 'package:dev_shot/components/shot/shot.dart';
+import 'package:dev_shot/screens/article.dart';
 import 'package:flutter/material.dart';
 
 class BreadcrumbNumber extends StatelessWidget {
@@ -12,8 +14,8 @@ class BreadcrumbNumber extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(7)),
         border: Border.all(
-          color: Theme.of(context).colorScheme.onPrimaryContainer,
-          width: 1,
+          color: Theme.of(context).colorScheme.primary,
+          width: 2,
           style: BorderStyle.solid,
         ),
       ),
@@ -21,8 +23,9 @@ class BreadcrumbNumber extends StatelessWidget {
         number,
         textAlign: TextAlign.center,
         style: TextStyle(
-          color: Theme.of(context).colorScheme.onPrimaryContainer,
-          fontSize: Theme.of(context).textTheme.titleMedium!.fontSize,
+          color: Theme.of(context).colorScheme.onPrimary,
+          fontSize: Theme.of(context).textTheme.titleLarge!.fontSize,
+          fontWeight: Theme.of(context).textTheme.titleLarge!.fontWeight,
         ),
       ),
     );
@@ -40,19 +43,23 @@ class BreadcrumbTitle extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        BreadcrumbNumber(
-          number: index.toString(),
-        ),
-        const SizedBox(
-          width: 8,
-        ),
-        Text(
-          title,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
-            fontSize: Theme.of(context).textTheme.titleLarge!.fontSize,
+        // BreadcrumbNumber(
+        //   number: index.toString(),
+        // ),
+        // const SizedBox(
+        //   width: 8,
+        // ),
+        Expanded(
+          child: Shot(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) {
+                  return const ArticleScreen();
+                }),
+              );
+            },
           ),
-        )
+        ),
       ],
     );
   }

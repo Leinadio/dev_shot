@@ -40,6 +40,7 @@ dependencies:
   bloc: ^8.1.2
   flutter_svg: ^2.0.6
   curved_navigation_bar: ^1.0.3
+  flutter_dash: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,8 @@ flutter:
   assets:
     - assets/images/logo.svg
     - assets/images/submit.jpg
+    - assets/images/firebase.png
+    - assets/images/react.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

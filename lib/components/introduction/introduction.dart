@@ -11,10 +11,10 @@ class Introduction extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Avant de commencer',
+          "Prérequis",
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
+            color: Theme.of(context).colorScheme.onPrimary,
             fontWeight: Theme.of(context).textTheme.titleMedium!.fontWeight,
             fontSize: Theme.of(context).textTheme.titleMedium!.fontSize,
           ),
@@ -35,6 +35,18 @@ class Introduction extends StatelessWidget {
             ),
             BreadcrumbStep(
               index: 3,
+              title: "Initialiser le SDK Firebase",
+            ),
+            BreadcrumbStep(
+              index: 4,
+              title: "Initialiser le SDK Firebase",
+            ),
+            BreadcrumbStep(
+              index: 5,
+              title: "Initialiser le SDK Firebase",
+            ),
+            BreadcrumbStep(
+              index: 6,
               last: true,
               title: "Initialiser le SDK Firebase",
             ),

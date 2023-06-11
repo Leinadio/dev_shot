@@ -9,40 +9,42 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: spaceL),
-            child: Column(
-              children: <Widget>[
-                Text(
-                  "Des articles concentrés qui font gagner du temps",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontSize: Theme.of(context).textTheme.titleLarge!.fontSize,
-                    fontWeight: FontWeight.bold,
+      child: Container(
+        color: Theme.of(context).colorScheme.primary,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: spaceM),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    "Des articles concentrés qui font gagner du temps",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize:
+                          Theme.of(context).textTheme.titleLarge!.fontSize,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: spaceXL,
-                ),
-                Text(
-                  "Une veille et des articles de développement qui vont droit au but. \nPrenez rapidement vos shots",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
-                    fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
+                  const SizedBox(
+                    height: spaceM,
                   ),
-                ),
-              ],
+                  Text(
+                    "Une veille et des articles de développement qui vont droit au but. \nPrenez rapidement vos shots",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize:
+                          Theme.of(context).textTheme.bodyMedium!.fontSize,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 58,
-          ),
-          Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: spaceL),
+            const SizedBox(
+              height: spaceXXL,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: spaceM),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -50,13 +52,13 @@ class Home extends StatelessWidget {
                     height: spaceM,
                   ),
                   Text(
-                    "Les derniers shots d'articles",
+                    "Les derniers shots",
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontSize:
                           Theme.of(context).textTheme.titleLarge!.fontSize,
                       fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.primary,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
                   ListView.builder(
@@ -86,8 +88,8 @@ class Home extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

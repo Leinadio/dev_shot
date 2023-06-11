@@ -29,102 +29,114 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        // backgroundColor: Colors.white,
-        title: logo,
-      ),
-      body: Container(
-        padding: const EdgeInsets.all(spaceM),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        appBar: AppBar(
+          actions: [
+            IconButton(
+              onPressed: () {
+                print('Go to favorite');
+              },
+              icon: Icon(
+                Icons.star,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+            )
+          ],
+          backgroundColor: Theme.of(context)
+              .colorScheme
+              .primary, // backgroundColor: Colors.white,
+          title: logo,
+          bottom: TabBar(
+            unselectedLabelColor: Theme.of(context).colorScheme.onPrimary,
+            indicatorColor: Theme.of(context).colorScheme.onPrimary,
+            indicatorSize: TabBarIndicatorSize.tab,
+            labelColor: Theme.of(context).colorScheme.onPrimary,
+            tabs: const [
+              Tab(
+                icon: Column(
+                  children: [
+                    Icon(Icons.article),
+                    Text('Article'),
+                  ],
+                ),
+              ),
+              Tab(
+                icon: Column(
+                  children: [
+                    Icon(Icons.menu),
+                    Text('Prérequis'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
           children: [
-            const ArticleHeader(),
-            const SizedBox(
-              height: spaceM,
-            ),
-            const Divider(),
-            const SizedBox(
-              height: spaceM,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          Theme.of(context).colorScheme.onPrimaryContainer,
-                    ),
-                    onPressed: () {
-                      _onTap('introduction');
-                    },
-                    child: Text(
-                      '1 Introduction',
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimary),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: spaceM,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: spaceM,
+                  ),
+                  Text(
+                    'Initialiser Firebase',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize:
+                          Theme.of(context).textTheme.titleLarge!.fontSize,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-                const SizedBox(
-                  width: spaceM,
-                ),
-                Expanded(
-                  child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.onPrimary,
-                    ),
-                    onPressed: () {
-                      _onTap('article');
-                    },
-                    child: Text(
-                      '1 Articles',
-                      style: TextStyle(
-                          color:
-                              Theme.of(context).colorScheme.onPrimaryContainer),
+                  Text(
+                    'introduction pour initialiser firebase',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize:
+                          Theme.of(context).textTheme.bodyMedium!.fontSize,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            const SizedBox(
-              height: spaceM,
+            SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.all(spaceM),
+                child: const Introduction(),
+              ),
             ),
-            const Divider(),
-            const SizedBox(
-              height: spaceXL,
-            ),
-            if (_showIntroOrArticle == 0)
-              const Introduction()
-            else
-              const Center(
-                child: Text(
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
-              )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.question_answer),
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (BuildContext context) {
-              return SafeArea(
-                child: Container(
-                    height: 500,
-                    padding: const EdgeInsets.only(
-                      top: spaceL,
-                      left: spaceM,
-                      right: spaceM,
-                      bottom: spaceXL,
-                    ),
-                    width: double.infinity,
-                    child: const Question()),
-              );
-            },
-          );
-        },
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.question_answer),
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (BuildContext context) {
+                return SafeArea(
+                  child: Container(
+                      height: 500,
+                      padding: const EdgeInsets.only(
+                        top: spaceL,
+                        left: spaceM,
+                        right: spaceM,
+                        bottom: spaceXL,
+                      ),
+                      width: double.infinity,
+                      child: const Question()),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
