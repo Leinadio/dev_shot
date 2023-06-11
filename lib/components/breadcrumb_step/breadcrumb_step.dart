@@ -16,7 +16,6 @@ class BreadcrumbStep extends StatelessWidget {
   final bool last;
 
   Widget _isLast(BuildContext context) {
-    print('last $last');
     if (last) {
       return Container();
     }
