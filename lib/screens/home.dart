@@ -1,6 +1,6 @@
+import 'package:dev_shot/widgets/card/card_list/card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:dev_shot/styles/styles.dart';
-import 'package:dev_shot/components/shot/shot.dart';
 import 'package:dev_shot/screens/article.dart';
 
 class Home extends StatelessWidget {
@@ -61,27 +61,12 @@ class Home extends StatelessWidget {
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
-                  ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, index) {
-                      return Column(
-                        children: [
-                          const SizedBox(
-                            height: spaceM,
-                          ),
-                          Shot(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) {
-                                  return const ArticleScreen();
-                                }),
-                              );
-                            },
-                          )
-                        ],
+                  CardList(
+                    onItemTap: (index) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return const ArticleScreen();
+                        }),
                       );
                     },
                   ),

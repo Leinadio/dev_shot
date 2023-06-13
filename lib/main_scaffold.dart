@@ -3,7 +3,7 @@ import 'package:dev_shot/screens/profil.dart';
 import 'package:flutter/material.dart';
 import 'package:dev_shot/services/logo.dart';
 import 'package:dev_shot/screens/home.dart';
-import 'package:dev_shot/screens/articles.dart';
+import 'package:dev_shot/screens/search.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class MainScaffold extends StatefulWidget {
@@ -20,7 +20,7 @@ class MainScaffoldState extends State<MainScaffold> {
 
   List<Widget> listWidget = const [
     Home(),
-    ArticlesScreen(),
+    SearchScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -58,7 +58,7 @@ class MainScaffoldState extends State<MainScaffold> {
         },
         children: const [
           Home(),
-          ArticlesScreen(),
+          SearchScreen(),
           Favorites(),
           Profil(),
           // listWidget.elementAt(_selectedIndex),

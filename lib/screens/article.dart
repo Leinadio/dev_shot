@@ -1,5 +1,4 @@
-import 'package:dev_shot/components/article_header.dart/article_header.dart';
-import 'package:dev_shot/components/introduction/introduction.dart';
+import 'package:dev_shot/screens/prerequisite.dart';
 import 'package:dev_shot/components/question/question.dart';
 import 'package:dev_shot/styles/styles.dart';
 import 'package:flutter/material.dart';
@@ -13,20 +12,6 @@ class ArticleScreen extends StatefulWidget {
 }
 
 class _ArticleScreenState extends State<ArticleScreen> {
-  int _showIntroOrArticle = 0;
-
-  void _onTap(value) {
-    if (value == 'introduction') {
-      setState(() {
-        _showIntroOrArticle = 0;
-      });
-      return;
-    }
-    setState(() {
-      _showIntroOrArticle = 1;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -110,7 +95,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
             SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.all(spaceM),
-                child: const Introduction(),
+                child: const Prerequisite(),
               ),
             ),
           ],
@@ -123,15 +108,16 @@ class _ArticleScreenState extends State<ArticleScreen> {
               builder: (BuildContext context) {
                 return SafeArea(
                   child: Container(
-                      height: 500,
-                      padding: const EdgeInsets.only(
-                        top: spaceL,
-                        left: spaceM,
-                        right: spaceM,
-                        bottom: spaceXL,
-                      ),
-                      width: double.infinity,
-                      child: const Question()),
+                    height: 500,
+                    padding: const EdgeInsets.only(
+                      top: spaceL,
+                      left: spaceM,
+                      right: spaceM,
+                      bottom: spaceXL,
+                    ),
+                    width: double.infinity,
+                    child: const Question(),
+                  ),
                 );
               },
             );

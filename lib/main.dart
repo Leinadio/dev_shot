@@ -24,3 +24,7 @@ class Main extends StatelessWidget {
     );
   }
 }
+
+// TODO: Ajouter les donnée avec firestore
+// TODO: Shot et article
+// TODO: Enlever le favoris
