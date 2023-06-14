@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:dev_shot/services/logo.dart';
 
 class ArticleScreen extends StatefulWidget {
-  const ArticleScreen({super.key});
+  const ArticleScreen({
+    super.key,
+    required this.data,
+  });
+
+  final data;
 
   @override
   State<ArticleScreen> createState() => _ArticleScreenState();
@@ -72,7 +77,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                     height: spaceM,
                   ),
                   Text(
-                    'Initialiser Firebase',
+                    widget.data['title'],
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onPrimary,

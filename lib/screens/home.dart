@@ -1,10 +1,18 @@
+import 'package:dev_shot/repositories/articles.dart';
 import 'package:dev_shot/widgets/card/card_list/card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:dev_shot/styles/styles.dart';
 import 'package:dev_shot/screens/article.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  ArticleRepository articleRepository = ArticleRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +69,38 @@ class Home extends StatelessWidget {
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
-                  CardList(
-                    onItemTap: (index) {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (BuildContext context) {
-                          return const ArticleScreen();
-                        }),
+                  FutureBuilder(
+                    future: articleRepository.list(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return CardList(
+                          source: snapshot.data,
+                          onItemTap: (index) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                return ArticleScreen(
+                                  data: snapshot.data![index],
+                                );
+                              }),
+                            );
+                          },
+                        );
+                      }
+                      if (snapshot.hasError) {
+                        return const Text('erreur');
+                      }
+                      return const Center(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: spaceL,
+                            ),
+                            CircularProgressIndicator(
+                              color: Colors.amber,
+                            ),
+                          ],
+                        ),
                       );
                     },
                   ),
