@@ -42,7 +42,9 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   flutter_dash: ^1.0.0
   cloud_firestore: ^4.8.1
+  flutter_markdown: ^0.6.15+1
   dart_code_viewer2: ^1.0.1
+  firebase_storage: ^11.2.4
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:dart_code_viewer2/dart_code_viewer2.dart';
-import 'package:code_viewer/code_viewer.dart';
 
 class ContentAdapter {
   List<Widget> createContent({required String data, required BuildContext context}) {
@@ -38,13 +37,8 @@ class ContentAdapter {
         );
       }
       if (el["type"] == "code") {
-        const code = r'''
-void main() {
-  runApp(MyApp());
-}
-''';
         return DartCodeViewer(
-          code,
+          el["text"],
           height: 200,
           showCopyButton: false,
           numberStyle: const TextStyle(color: Colors.black),
