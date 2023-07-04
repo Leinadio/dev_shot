@@ -1,9 +1,9 @@
-import 'package:dev_shot/screens/favorites.dart';
-import 'package:dev_shot/screens/profil.dart';
+import 'package:dev_shot/presentation/screens/favorites.dart';
+import 'package:dev_shot/presentation/screens/profil.dart';
 import 'package:flutter/material.dart';
-import 'package:dev_shot/services/logo.dart';
-import 'package:dev_shot/screens/home.dart';
-import 'package:dev_shot/screens/search.dart';
+import 'package:dev_shot/styles/styles.dart';
+import 'package:dev_shot/presentation/screens/home.dart';
+import 'package:dev_shot/presentation/screens/search.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class MainScaffold extends StatefulWidget {
@@ -98,43 +98,3 @@ class MainScaffoldState extends State<MainScaffold> {
     );
   }
 }
-
-
-// BottomNavigationBar(
-//         onTap: _onItemTapped,
-//         currentIndex: _selectedIndex,
-//         selectedItemColor: Theme.of(context).colorScheme.onPrimaryContainer,
-//         showSelectedLabels: true,
-//         showUnselectedLabels: true,
-//         unselectedItemColor: Theme.of(context).colorScheme.onPrimaryContainer,
-//         items: [
-//           BottomNavigationBarItem(
-//             icon: Icon(
-//               Icons.home,
-//               color: updateColor(0),
-//             ),
-//             label: 'Home',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(
-//               Icons.search,
-//               color: updateColor(1),
-//             ),
-//             label: 'List',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(
-//               Icons.bookmark_add,
-//               color: updateColor(1),
-//             ),
-//             label: 'Favoris',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(
-//               Icons.person,
-//               color: updateColor(1),
-//             ),
-//             label: 'Profil',
-//           ),
-//         ],
-//       ),

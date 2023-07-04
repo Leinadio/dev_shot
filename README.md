@@ -1,16 +1,19 @@
-# dev_shot
+# Initialiser Firebase
 
-A new Flutter project.
+Installer d'abord l'outil de commande Firebase
 
-## Getting Started
+## Étape 2
 
-This project is a starting point for a Flutter application.
+Aller sur firebase
 
-A few resources to get you started if this is your first Flutter project:
+- [Ouvrir un lien: Firebase](https://console.firebase.google.com/u/0/)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+void main() {
+  runApp(MaterialApp(
+    home: Scaffold(
+      body: Markdown(data: markdownData),
+    ),
+  ));
+}
+```
