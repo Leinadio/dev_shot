@@ -13,21 +13,30 @@ class FavoritesFirestoreAdapter extends IFavoritesPort {
   }
 
   @override
-  Future<List<Article>> getFavoritesByUserId({
+  Future<List<Article?>> getFavoritesByUserId({
     required String userId,
   }) async {
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
         await collection!.where('userId', isEqualTo: userId).get();
     final List<QueryDocumentSnapshot<Map<String, dynamic>>> favorites = querySnapshot.docs;
 
-    final a = Future.wait(favorites.map((QueryDocumentSnapshot<Map<String, dynamic>> el) async {
+    final List<Article?> a =
+        await Future.wait(favorites.map((QueryDocumentSnapshot<Map<String, dynamic>> el) async {
       final data = el.data();
-      Article article = await articleFirestoreAdapter.getArticlesById(
-        articleId: data['articleId'],
+      Article? article = await articleFirestoreAdapter.getArticleById(
+        id: data['articleId'],
       );
-      return article;
-    }).toList());
-
-    return a;
+      if (article == null) {
+        return null;
+      }
+      return Article(
+        id: article.id,
+        title: article.title,
+        content: article.content,
+        imagePath: article.imagePath,
+        prerequisites: article.prerequisites,
+      );
+    }));
+    return a.where((element) => element != null).toList();
   }
 }

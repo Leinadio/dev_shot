@@ -5,7 +5,7 @@ class FavoritesController {
   final IFavoritesPort dataSource;
   const FavoritesController({required this.dataSource});
 
-  Future<List<Article>> getFavoritesByUserId({required String userId}) {
+  Future<List<Article?>> getFavoritesByUserId({required String userId}) {
     // Retourner le model en future dans
 
     // vu qu'on ne sait pas qu'elle database il y a derrière on peut le changer ça ne changera pas le comportement

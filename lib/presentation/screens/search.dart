@@ -51,8 +51,7 @@ class SearchScreen extends StatelessWidget {
             // },
             // canRequestFocus: false,
 
-            style: TextStyle(
-                color: Theme.of(context).colorScheme.onPrimaryContainer),
+            style: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer),
             decoration: InputDecoration(
               hintText: 'Rechercher...',
               prefixIcon: Icon(
@@ -188,13 +187,13 @@ class SearchScreen extends StatelessWidget {
                         path: 'assets/images/firebase.png',
                       ),
                       onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (BuildContext context) {
-                            return const ArticleScreen(
-                              data: [],
-                            );
-                          }),
-                        );
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(builder: (BuildContext context) {
+                        //     return const ArticleScreen(
+                        //       data: [],
+                        //     );
+                        //   }),
+                        // );
                       },
                     )
                   ],

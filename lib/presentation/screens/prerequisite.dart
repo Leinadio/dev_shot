@@ -4,37 +4,37 @@ import 'package:dev_shot/styles/styles.dart';
 import 'package:dev_shot/presentation/widgets/breadcrumb/breadcrumb_step/breadcrumb_step.dart';
 
 class Prerequisite extends StatelessWidget {
-  const Prerequisite({super.key});
+  const Prerequisite({
+    super.key,
+    required this.data,
+  });
+  final data;
+
+  List<BreadcrumbStep> displayBreadcrumbStep() {
+    final List<BreadcrumbStep> result = [];
+
+    for (var i = 0; i < data.length; i++) {
+      result.add(
+        BreadcrumbStep(
+          index: data[i]['etape_num'],
+          id: data[i]['articleId'],
+          title: data[i]['title'],
+          last: data.length - 1 == i,
+        ),
+      );
+    }
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: spaceL,
         ),
-        BreadcrumbList(
-          children: [
-            BreadcrumbStep(
-              index: 1,
-              title: 'Créer un projet Firebase',
-            ),
-            BreadcrumbStep(
-              index: 2,
-              title: "Copier le code d'initialisation",
-            ),
-            BreadcrumbStep(
-              index: 3,
-              title: "Initialiser le SDK Firebase",
-            ),
-            BreadcrumbStep(
-              index: 4,
-              title: "Mettre en place React",
-              last: true,
-            ),
-          ],
-        )
+        BreadcrumbList(children: displayBreadcrumbStep())
       ],
     );
   }

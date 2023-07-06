@@ -1,4 +1,5 @@
 import 'package:dev_shot/application/articles.dart';
+import 'package:dev_shot/domain/models/article.dart';
 import 'package:dev_shot/presentation/widgets/card/card_list/card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:dev_shot/styles/styles.dart';
@@ -12,7 +13,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  ArticleApplication postApplication = ArticleApplication();
+  ArticleApplication articleApplication = ArticleApplication();
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +67,8 @@ class _HomeState extends State<Home> {
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
-                  FutureBuilder(
-                    future: postApplication.getArticles(),
+                  FutureBuilder<List<Article>>(
+                    future: articleApplication.getLastArticles(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return CardList(
@@ -75,8 +76,9 @@ class _HomeState extends State<Home> {
                           onItemTap: (index) {
                             Navigator.of(context).push(
                               MaterialPageRoute(builder: (BuildContext context) {
+                                final id = snapshot.data![index].id;
                                 return ArticleScreen(
-                                  data: snapshot.data![index],
+                                  id: id,
                                 );
                               }),
                             );

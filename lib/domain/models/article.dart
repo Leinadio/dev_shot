@@ -3,14 +3,18 @@
 
 class Article {
   Article({
+    required this.id,
     required this.title,
     required this.imagePath,
     required this.content,
+    required this.prerequisites,
   });
 
+  final String id;
   final String title;
   final String imagePath;
   final String content;
+  final List<dynamic> prerequisites;
 
   // Article copyWith({
   //   String? title,
@@ -29,11 +33,13 @@ class Article {
   //   };
   // }
 
-  factory Article.fromMap(Map<String, dynamic> map) {
+  factory Article.fromMap(Map<String, dynamic> data) {
     return Article(
-      title: map['title'] as String,
-      imagePath: map['image_path'] as String,
-      content: map['content'] as String,
+      id: data['id'] as String,
+      title: data['title'] as String,
+      imagePath: data['image_path'] as String,
+      content: data['content'] as String,
+      prerequisites: data['prerequisites'],
     );
   }
 

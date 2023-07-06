@@ -9,11 +9,13 @@ class BreadcrumbStep extends StatelessWidget {
   const BreadcrumbStep({
     super.key,
     required this.index,
+    required this.id,
     required this.title,
     this.last = false,
   });
 
   final int index;
+  final String id;
   final String title;
   final bool last;
 
@@ -58,7 +60,7 @@ class BreadcrumbStep extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(builder: (BuildContext context) {
-                return const ArticleScreen(data: []);
+                return ArticleScreen(id: id);
               }),
             );
           },

@@ -5,13 +5,17 @@ import 'package:dev_shot/infra/firestore/articles_adapter.dart';
 class ArticleApplication {
   final articlesController = ArticlesController(dataSource: ArticleFirestoreAdapter());
 
-  Future<List<Article>> getArticles() {
-    return articlesController.getArticles();
+  Future<List<Article>> getLastArticles() {
+    return articlesController.getLastArticles();
   }
 
-  getLastArticles() {}
+  Future<List<Article>?> getPrerequisite({required String id}) {
+    return articlesController.getPrerequisite(id: id);
+  }
 
-  getArticleBy() {}
+  Future<Article?> getArticleById({required String id}) {
+    return articlesController.getArticleById(id: id);
+  }
 
   getFavoriteArticle() {}
 }

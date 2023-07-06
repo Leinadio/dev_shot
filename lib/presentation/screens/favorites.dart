@@ -19,8 +19,14 @@ class Favorites extends StatelessWidget {
             onItemTap: (index) {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (BuildContext context) {
+                  if (snapshot.data == null) {
+                    return Container();
+                  }
+                  if (snapshot.data![index] == null) {
+                    return Container();
+                  }
                   return ArticleScreen(
-                    data: snapshot.data![index],
+                    id: snapshot.data![index]!.id,
                   );
                 }),
               );
