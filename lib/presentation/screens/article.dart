@@ -116,6 +116,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
+            enableFeedback: true,
           ),
           actions: [
             IconButton(
