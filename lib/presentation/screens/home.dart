@@ -1,5 +1,6 @@
-import 'package:dev_shot/application/articles.dart';
-import 'package:dev_shot/domain/models/article.dart';
+import 'package:dev_shot/application/articles/models/article.dart';
+import 'package:dev_shot/application/articles/articles_app.dart';
+import 'package:dev_shot/infra/articles/models/article.dart';
 import 'package:dev_shot/presentation/widgets/card/card_list/card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:dev_shot/styles/styles.dart';
@@ -13,7 +14,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  ArticleApplication articleApplication = ArticleApplication();
+  ArticlesApplication articleApplication = ArticlesApplication();
 
   @override
   Widget build(BuildContext context) {

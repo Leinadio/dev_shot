@@ -1,8 +1,8 @@
 // import 'package:dev_shot/infra/content/content_adapter.dart';
 import 'dart:convert';
 import 'dart:typed_data';
-import 'package:dev_shot/application/articles.dart';
-import 'package:dev_shot/domain/models/article.dart';
+import 'package:dev_shot/application/articles/models/article.dart';
+import 'package:dev_shot/application/articles/articles_app.dart';
 import 'package:dev_shot/presentation/screens/prerequisite.dart';
 import 'package:dev_shot/presentation/components/question/question.dart';
 import 'package:dev_shot/styles/styles.dart';
@@ -24,7 +24,7 @@ class ArticleScreen extends StatefulWidget {
 
 class _ArticleScreenState extends State<ArticleScreen> {
   final controller = ScrollController();
-  ArticleApplication postApplication = ArticleApplication();
+  ArticlesApplication articleApplication = ArticlesApplication();
 
   getMarkdown(context, content) async {
     try {
@@ -58,7 +58,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     );
   }
 
-  Widget displayContent(Article? data) {
+  Widget displayContent(ArticleApp? data) {
     if (data == null) {
       return Center(
         child: Text(
@@ -71,6 +71,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     }
     return TabBarView(
       children: [
+        displayPrerequisites(data.prerequisites),
         Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: spaceM,
@@ -101,7 +102,14 @@ class _ArticleScreenState extends State<ArticleScreen> {
             ),
           ),
         ),
-        displayPrerequisites(data.prerequisites),
+        Center(
+          child: Text(
+            'Questions/Réponses',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
+          ),
+        )
       ],
     );
   }
@@ -109,12 +117,13 @@ class _ArticleScreenState extends State<ArticleScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
+      initialIndex: 1,
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: AppBar(
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
             enableFeedback: true,
           ),
@@ -140,6 +149,14 @@ class _ArticleScreenState extends State<ArticleScreen> {
               Tab(
                 icon: Column(
                   children: [
+                    Icon(Icons.menu),
+                    Text('Prérequis'),
+                  ],
+                ),
+              ),
+              Tab(
+                icon: Column(
+                  children: [
                     Icon(Icons.article),
                     Text('Article'),
                   ],
@@ -148,8 +165,8 @@ class _ArticleScreenState extends State<ArticleScreen> {
               Tab(
                 icon: Column(
                   children: [
-                    Icon(Icons.menu),
-                    Text('Avant de commencer'),
+                    Icon(Icons.forum),
+                    Text('Q/A'),
                   ],
                 ),
               ),
@@ -157,8 +174,8 @@ class _ArticleScreenState extends State<ArticleScreen> {
           ),
         ),
         body: FutureBuilder(
-          future: postApplication.getArticleById(id: widget.id),
-          builder: (BuildContext context, AsyncSnapshot<Article?> snapshot) {
+          future: articleApplication.getArticleById(id: widget.id),
+          builder: (BuildContext context, AsyncSnapshot<ArticleApp?> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
                 child: CircularProgressIndicator(
@@ -177,7 +194,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
               );
             }
             if (snapshot.connectionState == ConnectionState.done) {
-              if (!snapshot.hasData && snapshot.data != null) {
+              if (!snapshot.hasData || snapshot.data == null) {
                 return Center(
                   child: Text(
                     'Error',

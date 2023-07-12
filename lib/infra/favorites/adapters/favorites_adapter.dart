@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dev_shot/domain/favorites/favorites_port.dart';
-import 'package:dev_shot/domain/models/article.dart';
-import 'package:dev_shot/infra/firestore/articles_adapter.dart';
+import 'package:dev_shot/infra/favorites/ports/favorites_port.dart';
+import 'package:dev_shot/infra/articles/models/article.dart';
+import 'package:dev_shot/infra/articles/adapters/articles_firestore_adapter.dart';
 
 class FavoritesFirestoreAdapter extends IFavoritesPort {
   final FirebaseFirestore _firestoreDb = FirebaseFirestore.instance;

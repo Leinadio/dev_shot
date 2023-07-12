@@ -1,5 +1,5 @@
-import 'package:dev_shot/domain/models/article.dart';
-import 'package:dev_shot/domain/favorites/favorites_port.dart';
+import 'package:dev_shot/infra/articles/models/article.dart';
+import 'package:dev_shot/infra/favorites/ports/favorites_port.dart';
 
 class FavoritesController {
   final IFavoritesPort dataSource;

@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 // import 'dart:convert';
 
-class Article {
-  Article({
+import 'package:equatable/equatable.dart';
+
+class Article extends Equatable {
+  const Article({
     required this.id,
     required this.title,
     required this.imagePath,
@@ -60,4 +62,15 @@ class Article {
 
   // @override
   // int get hashCode => title.hashCode ^ imagePath.hashCode;
+
+  @override
+  List<Object> get props {
+    return [
+      id,
+      title,
+      imagePath,
+      content,
+      prerequisites,
+    ];
+  }
 }

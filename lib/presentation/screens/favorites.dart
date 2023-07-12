@@ -1,4 +1,4 @@
-import 'package:dev_shot/application/favorites.dart';
+import 'package:dev_shot/application/favorites/favorites_app.dart';
 import 'package:dev_shot/presentation/screens/article.dart';
 import 'package:dev_shot/presentation/widgets/card/card_list/card_list.dart';
 import 'package:dev_shot/styles/styles.dart';

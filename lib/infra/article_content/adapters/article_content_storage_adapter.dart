@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:dev_shot/infra/article_content/ports/article_content_port.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-class ContentStorageAdapter {
+class ArticleContentStorageAdapter extends IContentPort {
   final storageRef = FirebaseStorage.instance.ref();
 
-  Future<String?> getContent(content) async {
+  @override
+  Future<String?> getContent(String content) async {
     try {
       final storageRef = FirebaseStorage.instance.ref();
       final pathReference = storageRef.child(content);

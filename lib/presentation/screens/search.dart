@@ -1,6 +1,6 @@
+import 'package:dev_shot/application/articles/articles_app.dart';
 import 'package:dev_shot/presentation/widgets/card/card_image/card_image.dart';
 import 'package:dev_shot/presentation/widgets/card/card_tile/card_tile.dart';
-import 'package:dev_shot/presentation/screens/article.dart';
 import 'package:flutter/material.dart';
 import 'package:dev_shot/styles/styles.dart';
 
@@ -40,6 +40,9 @@ class SearchScreen extends StatelessWidget {
           // ),
 
           TextFormField(
+            onChanged: (String value) {
+              print('value : $value');
+            },
             // onTap: () {
             //   Navigator.of(context).push(
             //     MaterialPageRoute(

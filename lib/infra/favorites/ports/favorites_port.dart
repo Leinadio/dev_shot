@@ -1,4 +1,4 @@
-import 'package:dev_shot/domain/models/article.dart';
+import 'package:dev_shot/infra/articles/models/article.dart';
 
 abstract class IFavoritesPort {
   Future<List<Article?>> getFavoritesByUserId({
