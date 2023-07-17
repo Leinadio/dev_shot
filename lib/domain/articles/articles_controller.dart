@@ -38,4 +38,13 @@ class ArticlesController extends IArticleRequest {
       prerequisites: article.prerequisites,
     );
   }
+
+  @override
+  Future<List<Article>> getArticleByTitle({required String title}) async {
+    try {
+      return dataSource.getArticleByTitle(title: title);
+    } catch (e) {
+      return [];
+    }
+  }
 }

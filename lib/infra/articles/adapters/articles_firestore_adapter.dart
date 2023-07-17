@@ -2,6 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dev_shot/infra/articles/models/article.dart';
 import 'package:dev_shot/infra/articles/ports/articles_port.dart';
 
+extension StringCasingExtension on String {
+  String toCapitalized() =>
+      length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
+  String toTitleCase() =>
+      replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.toCapitalized()).join(' ');
+}
+
 class ArticleFirestoreAdapter extends IArticlesPort {
   final FirebaseFirestore _firestoreDb = FirebaseFirestore.instance;
   CollectionReference<Map<String, dynamic>>? collection;
@@ -21,34 +28,11 @@ class ArticleFirestoreAdapter extends IArticlesPort {
         .get();
 
     final List<QueryDocumentSnapshot<Map<String, dynamic>>> articles = querySnapshot.docs;
-    final ar = articles.map((QueryDocumentSnapshot<Map<String, dynamic>> el) {
-      final data = el.data();
-      final m = Article.fromMap({"id": el.id, ...data});
-      return m;
-    }).toList();
-    return ar;
-  }
-
-  @override
-  Future<List<Article>> getPrerequisite({required String id}) async {
-    DocumentSnapshot<Map<String, dynamic>> querySnapshot = await collection!.doc(id).get();
-    final data = querySnapshot.data();
-
-    if (data == null) {
-      return [];
-    }
-
-    QuerySnapshot<Map<String, dynamic>> querySnapshota =
-        await collection!.where(FieldPath.documentId, whereIn: data['prerequisites']).get();
-
-    final List<QueryDocumentSnapshot<Map<String, dynamic>>> articles = querySnapshota.docs;
-
     return articles.map((QueryDocumentSnapshot<Map<String, dynamic>> el) {
       final data = el.data();
-
-      final Article m = Article.fromMap({
-        ...data,
+      final m = Article.fromMap({
         "id": el.id,
+        ...data,
       });
       return m;
     }).toList();
@@ -65,5 +49,24 @@ class ArticleFirestoreAdapter extends IArticlesPort {
       ...data,
       "id": querySnapshot.id,
     });
+  }
+
+  @override
+  Future<List<Article>> getArticleByTitle({required String title}) async {
+    QuerySnapshot<Map<String, dynamic>> querySnapshot = await collection!
+        .where('title_search', isGreaterThanOrEqualTo: title.toLowerCase())
+        .where('title_search', isLessThan: '${title}z')
+        .where('category', isEqualTo: 'firebase')
+        .get();
+
+    final List<QueryDocumentSnapshot<Map<String, dynamic>>> articles = querySnapshot.docs;
+    return articles.map((QueryDocumentSnapshot<Map<String, dynamic>> el) {
+      final data = el.data();
+      final m = Article.fromMap({
+        "id": el.id,
+        ...data,
+      });
+      return m;
+    }).toList();
   }
 }

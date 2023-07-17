@@ -18,4 +18,8 @@ class ArticlesApplication {
   Future<ArticleApp?> getArticleById({required String id}) {
     return articlesController.getArticleById(id: id);
   }
+
+  Future<List<Article>> getArticleByTitle({required String title}) {
+    return articlesController.getArticleByTitle(title: title);
+  }
 }

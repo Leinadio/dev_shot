@@ -59,8 +59,8 @@ class MainScaffoldState extends State<MainScaffold> {
         children: const [
           Home(),
           SearchScreen(),
-          Favorites(),
-          Profil(),
+          // Favorites(),
+          // Profil(),
           // listWidget.elementAt(_selectedIndex),
         ],
       ),
@@ -83,14 +83,14 @@ class MainScaffoldState extends State<MainScaffold> {
               Icons.search,
               color: updatePageIndex(1),
             ),
-            Icon(
-              Icons.bookmark_add,
-              color: updatePageIndex(2),
-            ),
-            Icon(
-              Icons.person,
-              color: updatePageIndex(3),
-            ),
+            // Icon(
+            //   Icons.bookmark_add,
+            //   color: updatePageIndex(2),
+            // ),
+            // Icon(
+            //   Icons.person,
+            //   color: updatePageIndex(3),
+            // ),
           ],
           onTap: _onItemTapped,
         ),
